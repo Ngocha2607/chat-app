@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from '../dto/create-auth.dto';
-import { UpdateAuthDto } from '../dto/update-auth.dto';
+import { CreateAuthDto } from './dto/create-auth.dto';
+import { IAuthService } from './auth';
+import { UpdateAuthDto } from './dto/update-auth.dto';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements IAuthService {
   create(createAuthDto: CreateAuthDto) {
     return 'This action adds a new auth';
   }
@@ -23,4 +24,5 @@ export class AuthService {
   remove(id: number) {
     return `This action removes a #${id} auth`;
   }
+  validateUser() {}
 }

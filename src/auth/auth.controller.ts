@@ -6,15 +6,18 @@ import {
   Patch,
   Param,
   Delete,
+  Inject,
 } from '@nestjs/common';
-import { CreateAuthDto } from '../dto/create-auth.dto';
-import { AuthService } from '../services/auth.service';
-import { Routes } from 'src/utils/types';
-import { UpdateAuthDto } from '../dto/update-auth.dto';
+import { Routes, Services } from 'src/utils/types';
+import { CreateAuthDto } from './dto/create-auth.dto';
+import { IAuthService } from './auth';
+import { UpdateAuthDto } from './dto/update-auth.dto';
 
 @Controller(Routes.AUTH)
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    @Inject(Services.AUTH) private readonly authService: IAuthService,
+  ) {}
 
   @Post()
   create(@Body() createAuthDto: CreateAuthDto) {
